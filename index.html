@@ -11,10 +11,15 @@
     :root {
       --primary: #228B22;
       --primary-dark: #1e7c1e;
-      --dark: #111;
-      --dark-light: #222;
-      --text: #ddd;
-      --text-light: #aaa;
+      --primary-light: #e8f5e8;
+      --secondary: #1a365d;
+      --white: #ffffff;
+      --light-bg: #f8f9fa;
+      --light-border: #e9ecef;
+      --text: #333333;
+      --text-light: #666666;
+      --shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
     * {
@@ -29,7 +34,7 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--dark);
+      background-color: var(--white);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
@@ -52,25 +57,26 @@
     }
 
     section {
-      padding: 100px 0;
+      padding: 80px 0;
     }
 
     .section-title {
       font-size: 2.5rem;
       margin-bottom: 50px;
-      color: var(--primary);
+      color: var(--secondary);
+      text-align: center;
       position: relative;
-      padding-left: 15px;
     }
 
-    .section-title::before {
+    .section-title::after {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 5px;
+      width: 80px;
+      height: 4px;
       background: var(--primary);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .btn {
@@ -95,10 +101,11 @@
     header {
       position: fixed;
       width: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       padding: 20px 0;
       z-index: 1000;
       transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     header.scrolled {
@@ -116,6 +123,12 @@
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--primary);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo i {
+      margin-right: 10px;
     }
 
     .nav-links {
@@ -153,6 +166,7 @@
       display: none;
       font-size: 1.5rem;
       cursor: pointer;
+      color: var(--text);
     }
 
     /* Hero Section */
@@ -160,7 +174,7 @@
       height: 100vh;
       display: flex;
       align-items: center;
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
     }
 
     .hero-content {
@@ -200,6 +214,10 @@
     }
 
     /* About Section */
+    #about {
+      background: var(--light-bg);
+    }
+
     .about-content {
       display: grid;
 
@@ -210,7 +228,7 @@
     .about-img {
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      box-shadow: var(--shadow);
     }
 
     .about-img img {
@@ -240,9 +258,51 @@
       color: var(--primary);
     }
 
+    /* Services Section */
+    #services {
+      background: var(--white);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      text-align: center;
+      border-top: 4px solid var(--primary);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .service-icon {
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--secondary);
+    }
+
+    .service-card p {
+      color: var(--text-light);
+    }
+
     /* Skills Section */
     #skills {
-      background: var(--dark-light);
+      background: var(--light-bg);
     }
 
     .skills-container {
@@ -252,10 +312,16 @@
     }
 
     .skill-category {
-      background: var(--dark);
+      background: var(--white);
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+
+    .skill-category:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
     }
 
     .skill-category h3 {
@@ -278,15 +344,19 @@
     }
 
     .skill-item {
-      background: rgba(34, 139, 34, 0.1);
+      background: var(--primary-light);
       color: var(--primary);
       padding: 8px 15px;
       border-radius: 20px;
       font-size: 0.9rem;
-      border: 1px solid rgba(34, 139, 34, 0.3);
+      border: 1px solid rgba(34, 139, 34, 0.2);
     }
 
     /* Projects Section */
+    #projects {
+      background: var(--white);
+    }
+
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -294,16 +364,17 @@
     }
 
     .project-card {
-      background: var(--dark-light);
+      background: var(--white);
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow);
       transition: all 0.3s ease;
+      border: 1px solid var(--light-border);
     }
 
     .project-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(34, 139, 34, 0.2);
+      box-shadow: var(--shadow-hover);
     }
 
     .project-img {
@@ -345,7 +416,7 @@
     }
 
     .project-tech span {
-      background: rgba(34, 139, 34, 0.1);
+      background: var(--primary-light);
       color: var(--primary);
       padding: 5px 10px;
       border-radius: 5px;
@@ -366,7 +437,7 @@
 
     /* Contact Section */
     #contact {
-      background: var(--dark-light);
+      background: var(--light-bg);
     }
 
     .contact-container {
@@ -416,21 +487,23 @@
       justify-content: center;
       width: 40px;
       height: 40px;
-      background: var(--dark);
+      background: var(--white);
       border-radius: 50%;
       transition: all 0.3s ease;
+      box-shadow: var(--shadow);
     }
 
     .social-links a:hover {
       background: var(--primary);
+      color: white;
       transform: translateY(-5px);
     }
 
     .contact-form {
-      background: var(--dark);
+      background: var(--white);
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow);
     }
 
     .form-group {
@@ -441,13 +514,14 @@
       display: block;
       margin-bottom: 8px;
       color: var(--text-light);
+      font-weight: 500;
     }
 
     .form-control {
       width: 100%;
       padding: 12px 15px;
-      background: var(--dark-light);
-      border: 1px solid #333;
+      background: var(--light-bg);
+      border: 1px solid var(--light-border);
       border-radius: 5px;
       color: var(--text);
       font-family: inherit;
@@ -467,22 +541,52 @@
 
     /* Footer */
     footer {
-      background: var(--dark);
-      padding: 30px 0;
-      text-align: center;
-      color: var(--text-light);
+      background: var(--secondary);
+      padding: 50px 0 20px;
+      color: white;
     }
 
     .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .footer-column p {
+      margin-bottom: 20px;
+      color: #ccc;
     }
 
     .footer-links {
-      display: flex;
-      gap: 20px;
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      padding-left: 5px;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ccc;
     }
 
     /* Responsive Design */
@@ -504,12 +608,13 @@
         left: -100%;
         width: 100%;
         height: calc(100vh - 70px);
-        background: var(--dark);
+        background: var(--white);
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         padding-top: 50px;
         transition: all 0.5s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
 
       .nav-links.active {
@@ -551,6 +656,10 @@
         grid-template-columns: 1fr;
       }
 
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
       .contact-container {
         grid-template-columns: 1fr;
       }
@@ -562,13 +671,14 @@
   <!-- Header -->
   <header id="header">
     <div class="container header-container">
-      <a href="#" class="logo">Ubaid Shekh</a>
+      <a href="#" class="logo"><i class="fas fa-code"></i> Ubaid Shekh</a>
       <div class="mobile-menu">
         <i class="fas fa-bars"></i>
       </div>
       <ul class="nav-links">
         <li><a href="#home" class="active">Home</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -609,6 +719,36 @@
             <h4>Education</h4>
             <p>Engineering - Jamia Millia Islamia</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">My Services</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>Web Development</h3>
+          <p>Custom web applications built with modern technologies like React, Node.js, and MongoDB.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Mobile App Development</h3>
+          <p>Cross-platform mobile applications using React Native and Flutter for iOS and Android.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-microchip"></i>
+          </div>
+          <h3>IoT Solutions</h3>
+          <p>Smart home automation and IoT device integration with custom control applications.</p>
         </div>
       </div>
     </div>
@@ -834,11 +974,33 @@
   <footer>
     <div class="container">
       <div class="footer-content">
-        <p>&copy; 2023 Ubaid Shekh. All Rights Reserved.</p>
-        <div class="footer-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+        <div class="footer-column">
+          <h3>Ubaid Shekh</h3>
+          <p>Full Stack Developer & IoT Engineer passionate about creating innovative solutions that bridge the physical
+            and digital worlds.</p>
         </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Contact Info</h3>
+          <ul class="footer-links">
+            <li><i class="fas fa-envelope"></i> ubaidjmi2022@gmail.com</li>
+            <li><i class="fas fa-phone"></i> +91 7303457812</li>
+            <li><i class="fas fa-map-marker-alt"></i> New Delhi, India</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2023 Ubaid Shekh. All Rights Reserved.</p>
       </div>
     </div>
   </footer>
